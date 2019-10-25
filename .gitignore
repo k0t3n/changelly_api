@@ -1,3 +1,5 @@
 venv
 .idea
 test.py
+changelly_api.egg-info/
+dist/
