@@ -3,3 +3,5 @@ venv
 test.py
 changelly_api.egg-info/
 dist/
+tests/__pycache__/
+.pytest_cache/

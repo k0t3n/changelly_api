@@ -2,9 +2,10 @@
 [![Pypi](https://img.shields.io/pypi/v/changelly-api.svg)](https://pypi.python.org/pypi/changelly-api)
 
 **Changelly API** is a python wrapper library over Changelly RPC API.
+
 Please, [read the docs](https://github.com/changelly/api-changelly) before usage.
 
-## Examples
+## Usage
 ```python
 from changelly_api import ChangellyAPI
 
