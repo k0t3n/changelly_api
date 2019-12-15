@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 :authors: k0t3n
-:license: Apache License, Version 2.0, see LICENSE file
-:copyright: (c) 2019 python273
+:license: MIT License, see LICENSE file
+:copyright: (c) 2019 k0t3n
 """
 
 from .api import ChangellyAPI
