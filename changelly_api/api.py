@@ -109,6 +109,11 @@ class ChangellyAPI:
         # TODO: validate pairs_list
         return self._make_request(method, pairs_list)
 
+    def get_pairs_params(self, pairs_list):
+        method = 'getPairsParams'
+        # TODO: validate pairs_list
+        return self._make_request(method, pairs_list)
+
     def create_fix_transaction(self, currency_from, currency_to, address, refund_address, amount_from, amount_to,
                                rate_id, **kwargs):
         method = 'createFixTransaction'
