@@ -28,9 +28,12 @@ Supported methods:
 * getCurrencies
 * getCurrenciesFull
 * getMinAmount
+* getPairsParams
+* getExchangeAmount
 * createTransaction
 * createFixedTransaction
 * getFixRate
+* getFixRateBulk
 * getFixRateForAmount
 * validateAddress
 * getTransactions
