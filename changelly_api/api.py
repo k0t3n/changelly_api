@@ -51,15 +51,10 @@ class ChangellyAPI:
 
         return self._parse_response(response)
 
-    def get_currencies(self, currency_from, currency_to, **kwargs):
+    def get_currencies(self, **kwargs):
         method = 'getCurrencies'
-        data = {
-            'from': currency_from,
-            'to': currency_to,
-            **kwargs
-        }
 
-        return self._make_request(method, data)
+        return self._make_request(method, kwargs)
 
     def get_currencies_full(self, **kwargs):
         method = 'getCurrenciesFull'
