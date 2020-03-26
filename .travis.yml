@@ -1,0 +1,19 @@
+language: python
+
+python:
+  - 3.6
+  - 3.7
+  - 3.8
+
+dist: xenial
+
+install:
+  - pip install -r tests/requirements.txt
+  - pip install -e .
+  - pip install codecov
+
+script:
+  - pytest --cov=./changelly_api
+
+after_success:
+  - codecov
