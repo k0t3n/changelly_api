@@ -1,14 +1,5 @@
 import json
 
-import pytest
-
-from changelly_api import ChangellyAPI
-
-
-@pytest.fixture(scope='module')
-def api():
-    return ChangellyAPI('key', 'secret')
-
 
 def test_generate_sign(api):
     data = {
