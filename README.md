@@ -1,5 +1,8 @@
 # Changelly API
 [![Pypi](https://img.shields.io/pypi/v/changelly-api.svg)](https://pypi.python.org/pypi/changelly-api)
+[![Build Status](https://travis-ci.com/k0t3n/changelly_api.svg?branch=master)](https://travis-ci.com/k0t3n/changelly_api)
+[![codecov](https://codecov.io/gh/k0t3n/changelly_api/branch/master/graph/badge.svg)](https://codecov.io/gh/k0t3n/changelly_api)
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/k0t3n/changelly_api)
 
 **Changelly API** is a python wrapper library over Changelly RPC API.
 
