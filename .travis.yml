@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
+  - "3.7-dev"  # 3.7 development branch
+
+dist: xenial
+
+install:
+  - pip install -r tests/requirements.txt
+  - pip install -e .
+  - pip install codecov
+
+script:
+  - pytest --cov=./changelly_api
+
+after_success:
+  - codecov
