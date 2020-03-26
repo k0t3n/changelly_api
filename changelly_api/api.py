@@ -5,17 +5,18 @@ from json import JSONDecodeError
 
 import requests
 
+from changelly_api.conf import *
 from changelly_api.exceptions import *
 
 
 class ChangellyAPI:
-    def __init__(self, api_key, secret, url='https://api.changelly.com'):
+    def __init__(self, api_key, api_secret, url=API_ROOT_URL):
         self._api_key = api_key
-        self._secret = secret
+        self._api_secret = api_secret
         self._url = url
 
     def _generate_sign(self, json_data):
-        return hmac.new(self._secret.encode('utf-8'), json_data.encode('utf-8'), hashlib.sha512).hexdigest()
+        return hmac.new(self._api_secret.encode('utf-8'), json_data.encode('utf-8'), hashlib.sha512).hexdigest()
 
     def _parse_response(self, response):
         if response.status_code == 401:
@@ -30,6 +31,15 @@ class ChangellyAPI:
             raise JSONResponseParseError('Error parsing JSON response')
 
         if data.get('error'):
+
+            if data['error']['code'] == INVALID_AMOUNT_ERROR_CODE:
+                value = float(data['error']['message'][34:36])
+
+                if 'maximal' in data['error']['message']:
+                    raise AmountGreaterThanMaximum(value)
+                elif 'minimal' in data['error']['message']:
+                    raise AmountLessThanMinimum(value)
+
             raise ChangellyAPIError(data['error'])
 
         return data.get('result')
@@ -44,10 +54,12 @@ class ChangellyAPI:
 
         serialized_data = json.dumps(message)
 
-        sign = hmac.new(self._secret.encode('utf-8'), serialized_data.encode('utf-8'), hashlib.sha512).hexdigest()
-
-        headers = {'api-key': self._api_key, 'sign': sign, 'Content-type': 'application/json'}
-        response = requests.post(self._url, headers=headers, data=serialized_data)
+        headers = {'api-key': self._api_key, 'sign': self._generate_sign(serialized_data),
+                   'Content-type': 'application/json'}
+        try:
+            response = requests.post(self._url, headers=headers, data=serialized_data)
+        except requests.RequestException as error:
+            raise ChangellyAPIError(f'Unknown error occurred during request: {error}')
 
         return self._parse_response(response)
 
