@@ -131,14 +131,16 @@ class ChangellyAPI:
 
         return self._make_request(method, **kwargs)
 
-    def create_fix_transaction(self, currency_from, currency_to, address, refund_address, amount_from, amount_to,
-                               rate_id, **kwargs):
+    def create_fix_transaction(self, currency_from, currency_to, payout_address, refund_address, amount_from, amount_to,
+                               rate_id, refund_address_extra_id=None, payout_address_extra_id=None, **kwargs):
         method = 'createFixTransaction'
         data = {
             'from': currency_from,
             'to': currency_to,
-            'address': address,
+            'address': payout_address,
+            'extraId': payout_address_extra_id,
             'refundAddress': refund_address,
+            'refundExtraId': refund_address_extra_id,
             'amountFrom': amount_from,
             'amountTo': amount_to,
             'rateId': rate_id,
