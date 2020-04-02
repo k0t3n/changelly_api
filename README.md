@@ -21,7 +21,7 @@ float_tx = api.create_transaction('btc', 'eth', 1, '<your_addres_here>')
 rate = api.get_fix_rate_for_amount([{'from': 'btc', 'to': 'eth', 'amountFrom': 0.5}])[0]
 tx = api.create_fix_transaction(
     currency_from='btc', currency_to='eth',
-    address='<your_address_here>', refund_address='<your_address_here>',
+    payout_address='<your_address_here>', refund_address='<your_address_here>',
     amount_from=rate['amountFrom'], amount_to=rate['amountTo'],
     rate_id=rate['id']
 )
